@@ -1,0 +1,457 @@
+[0m15:19:31.482346 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026274AC2F10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026274E93990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026274E6EBD0>]}
+
+
+============================== 15:19:31.490468 | b3e9a036-c559-403e-963e-554cd2376fe9 ==============================
+[0m15:19:31.490468 [info ] [MainThread]: Running with dbt=1.7.9
+[0m15:19:31.490468 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\username\\dbt_tst\\incremental_test', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'C:\\Users\\username\\dbt_tst\\incremental_test\\logs', 'warn_error': 'None', 'debug': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt run --debug', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m15:19:31.752229 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000262754ABBD0>]}
+[0m15:19:31.828900 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000262753E88D0>]}
+[0m15:19:31.830650 [info ] [MainThread]: Registered adapter: sqlserver=1.7.4
+[0m15:19:31.840617 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m15:19:31.896593 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m15:19:31.898294 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m15:19:31.904286 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000262756433D0>]}
+[0m15:19:31.913496 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000262754DBB90>]}
+[0m15:19:31.913496 [info ] [MainThread]: Found 1 model, 0 sources, 0 exposures, 0 metrics, 447 macros, 0 groups, 0 semantic models
+[0m15:19:31.913496 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026270B47E10>]}
+[0m15:19:31.913496 [info ] [MainThread]: 
+[0m15:19:31.922359 [debug] [MainThread]: Acquiring new sqlserver connection 'master'
+[0m15:19:31.925822 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_TestDB'
+[0m15:19:31.934284 [debug] [ThreadPool]: Using sqlserver connection "list_TestDB"
+[0m15:19:31.938750 [debug] [ThreadPool]: On list_TestDB: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "connection_name": "list_TestDB"} */
+select  name as [schema]
+    from sys.schemas 
+  
+[0m15:19:31.939030 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:19:31.939030 [debug] [ThreadPool]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:19:31.985958 [debug] [ThreadPool]: SQLServer adapter: Connected to db: TestDB
+[0m15:19:31.988447 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m15:19:31.990509 [debug] [ThreadPool]: On list_TestDB: Close
+[0m15:19:31.992296 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_TestDB_dbo'
+[0m15:19:31.998269 [debug] [ThreadPool]: Using sqlserver connection "list_TestDB_dbo"
+[0m15:19:31.998993 [debug] [ThreadPool]: On list_TestDB_dbo: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "connection_name": "list_TestDB_dbo"} */
+select
+      table_catalog as [database],
+      table_name as [name],
+      table_schema as [schema],
+      case when table_type = 'BASE TABLE' then 'table'
+           when table_type = 'VIEW' then 'view'
+           else table_type
+      end as table_type
+
+    from INFORMATION_SCHEMA.TABLES 
+    where table_schema like 'dbo'
+  
+[0m15:19:31.998993 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:19:31.998993 [debug] [ThreadPool]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:19:32.005013 [debug] [ThreadPool]: SQLServer adapter: Connected to db: TestDB
+[0m15:19:32.010826 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m15:19:32.013174 [debug] [ThreadPool]: On list_TestDB_dbo: ROLLBACK
+[0m15:19:32.014938 [debug] [ThreadPool]: On list_TestDB_dbo: Close
+[0m15:19:32.018312 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000262753E8050>]}
+[0m15:19:32.019766 [debug] [MainThread]: On master: COMMIT
+[0m15:19:32.021834 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m15:19:32.021834 [info ] [MainThread]: 
+[0m15:19:32.021834 [debug] [Thread-1 (]: Began running node model.incremental_test.incremental_model_file
+[0m15:19:32.029964 [info ] [Thread-1 (]: 1 of 1 START sql incremental model dbo.incremental_model_file .................. [RUN]
+[0m15:19:32.029964 [debug] [Thread-1 (]: Acquiring new sqlserver connection 'model.incremental_test.incremental_model_file'
+[0m15:19:32.029964 [debug] [Thread-1 (]: Began compiling node model.incremental_test.incremental_model_file
+[0m15:19:32.050450 [debug] [Thread-1 (]: Writing injected SQL for node "model.incremental_test.incremental_model_file"
+[0m15:19:32.054284 [debug] [Thread-1 (]: Timing info for model.incremental_test.incremental_model_file (compile): 15:19:32.037999 => 15:19:32.054284
+[0m15:19:32.054284 [debug] [Thread-1 (]: Began executing node model.incremental_test.incremental_model_file
+[0m15:19:32.103150 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:19:32.103150 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      USE [TestDB];
+      select
+          sch.name as schema_name,
+          obj.name as view_name
+      from sys.sql_expression_dependencies refs
+      inner join sys.objects obj
+      on refs.referencing_id = obj.object_id
+      inner join sys.schemas sch
+      on obj.schema_id = sch.schema_id
+      where refs.referenced_database_name = 'TestDB'
+      and refs.referenced_schema_name = 'dbo'
+      and refs.referenced_entity_name = 'incremental_model_file_temp_view'
+      and refs.referencing_class = 1
+      and obj.type = 'V'
+      
+[0m15:19:32.111273 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m15:19:32.111273 [debug] [Thread-1 (]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:19:32.133913 [debug] [Thread-1 (]: SQLServer adapter: Connected to db: TestDB
+[0m15:19:32.136375 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:19:32.138383 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:19:32.138383 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+    
+      
+      
+    
+    USE [TestDB];
+    EXEC('DROP view IF EXISTS "dbo"."incremental_model_file_temp_view";');
+
+  
+[0m15:19:32.144416 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:19:32.149302 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:19:32.150512 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      USE [TestDB];
+      select
+          sch.name as schema_name,
+          obj.name as view_name
+      from sys.sql_expression_dependencies refs
+      inner join sys.objects obj
+      on refs.referencing_id = obj.object_id
+      inner join sys.schemas sch
+      on obj.schema_id = sch.schema_id
+      where refs.referenced_database_name = 'TestDB'
+      and refs.referenced_schema_name = 'dbo'
+      and refs.referenced_entity_name = 'incremental_model_file_temp_view'
+      and refs.referencing_class = 1
+      and obj.type = 'V'
+      
+[0m15:19:32.155265 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:19:32.156591 [debug] [Thread-1 (]: Writing runtime sql for node "model.incremental_test.incremental_model_file"
+[0m15:19:32.156591 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:19:32.156591 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      
+  
+    
+
+   
+
+    USE [TestDB];
+    
+    
+
+    EXEC('create view "dbo"."incremental_model_file_temp_view" as 
+
+select
+    *
+
+from dbo.tst
+
+;');
+
+
+
+    
+      EXEC('SELECT * INTO [TestDB].[dbo].[incremental_model_file] FROM [TestDB].[dbo].[incremental_model_file_temp_view];');
+    
+
+    
+      
+      
+    
+    USE [TestDB];
+    EXEC('DROP view IF EXISTS "dbo"."incremental_model_file_temp_view";');
+
+
+
+  
+  
+[0m15:19:32.193772 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:19:32.209630 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: COMMIT
+[0m15:19:32.217624 [debug] [Thread-1 (]: Timing info for model.incremental_test.incremental_model_file (execute): 15:19:32.054284 => 15:19:32.217624
+[0m15:19:32.217624 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: Close
+[0m15:19:32.222818 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b3e9a036-c559-403e-963e-554cd2376fe9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002627569A7D0>]}
+[0m15:19:32.222818 [info ] [Thread-1 (]: 1 of 1 OK created sql incremental model dbo.incremental_model_file ............. [[32mOK[0m in 0.19s]
+[0m15:19:32.222818 [debug] [Thread-1 (]: Finished running node model.incremental_test.incremental_model_file
+[0m15:19:32.230860 [debug] [MainThread]: On master: COMMIT
+[0m15:19:32.230860 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:19:32.238826 [debug] [MainThread]: Connection 'list_TestDB' was properly closed.
+[0m15:19:32.242904 [debug] [MainThread]: Connection 'list_TestDB_dbo' was properly closed.
+[0m15:19:32.242904 [debug] [MainThread]: Connection 'model.incremental_test.incremental_model_file' was properly closed.
+[0m15:19:32.242904 [info ] [MainThread]: 
+[0m15:19:32.242904 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 0.32 seconds (0.32s).
+[0m15:19:32.250954 [debug] [MainThread]: Command end result
+[0m15:19:32.263083 [info ] [MainThread]: 
+[0m15:19:32.270988 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:19:32.277822 [info ] [MainThread]: 
+[0m15:19:32.277822 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m15:19:32.285822 [debug] [MainThread]: Command `dbt run` succeeded at 15:19:32.285822 after 0.89 seconds
+[0m15:19:32.292081 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026274AC3150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002626E4BB4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002626E4BB490>]}
+[0m15:19:32.292081 [debug] [MainThread]: Flushing usage events
+[0m15:20:06.546423 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B37A1EE90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B37506390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B37A1DA50>]}
+
+
+============================== 15:20:06.546423 | e847abcf-1850-4a1f-bafb-ecbf85445a84 ==============================
+[0m15:20:06.546423 [info ] [MainThread]: Running with dbt=1.7.9
+[0m15:20:06.546423 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'True', 'profiles_dir': 'C:\\Users\\username\\dbt_tst\\incremental_test', 'log_path': 'C:\\Users\\username\\dbt_tst\\incremental_test\\logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt run --debug', 'send_anonymous_usage_stats': 'True'}
+[0m15:20:06.811345 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B37FA3750>]}
+[0m15:20:06.892633 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B37A95490>]}
+[0m15:20:06.892633 [info ] [MainThread]: Registered adapter: sqlserver=1.7.4
+[0m15:20:06.908633 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m15:20:06.957906 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m15:20:06.957906 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m15:20:06.965887 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B381E31D0>]}
+[0m15:20:06.980449 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B3806F690>]}
+[0m15:20:06.987184 [info ] [MainThread]: Found 1 model, 0 sources, 0 exposures, 0 metrics, 447 macros, 0 groups, 0 semantic models
+[0m15:20:06.987184 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B336E7BD0>]}
+[0m15:20:06.987184 [info ] [MainThread]: 
+[0m15:20:06.987184 [debug] [MainThread]: Acquiring new sqlserver connection 'master'
+[0m15:20:06.995186 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_TestDB'
+[0m15:20:07.003188 [debug] [ThreadPool]: Using sqlserver connection "list_TestDB"
+[0m15:20:07.010224 [debug] [ThreadPool]: On list_TestDB: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "connection_name": "list_TestDB"} */
+select  name as [schema]
+    from sys.schemas 
+  
+[0m15:20:07.010224 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:20:07.010224 [debug] [ThreadPool]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:20:07.061743 [debug] [ThreadPool]: SQLServer adapter: Connected to db: TestDB
+[0m15:20:07.065150 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m15:20:07.067889 [debug] [ThreadPool]: On list_TestDB: Close
+[0m15:20:07.070372 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_TestDB_dbo'
+[0m15:20:07.075791 [debug] [ThreadPool]: Using sqlserver connection "list_TestDB_dbo"
+[0m15:20:07.077369 [debug] [ThreadPool]: On list_TestDB_dbo: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "connection_name": "list_TestDB_dbo"} */
+select
+      table_catalog as [database],
+      table_name as [name],
+      table_schema as [schema],
+      case when table_type = 'BASE TABLE' then 'table'
+           when table_type = 'VIEW' then 'view'
+           else table_type
+      end as table_type
+
+    from INFORMATION_SCHEMA.TABLES 
+    where table_schema like 'dbo'
+  
+[0m15:20:07.077369 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:20:07.077369 [debug] [ThreadPool]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:20:07.077369 [debug] [ThreadPool]: SQLServer adapter: Connected to db: TestDB
+[0m15:20:07.090215 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m15:20:07.093605 [debug] [ThreadPool]: On list_TestDB_dbo: ROLLBACK
+[0m15:20:07.094784 [debug] [ThreadPool]: On list_TestDB_dbo: Close
+[0m15:20:07.098527 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B38015890>]}
+[0m15:20:07.101471 [debug] [MainThread]: On master: COMMIT
+[0m15:20:07.101975 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m15:20:07.101975 [info ] [MainThread]: 
+[0m15:20:07.107527 [debug] [Thread-1 (]: Began running node model.incremental_test.incremental_model_file
+[0m15:20:07.107527 [info ] [Thread-1 (]: 1 of 1 START sql incremental model dbo.incremental_model_file .................. [RUN]
+[0m15:20:07.113499 [debug] [Thread-1 (]: Acquiring new sqlserver connection 'model.incremental_test.incremental_model_file'
+[0m15:20:07.113499 [debug] [Thread-1 (]: Began compiling node model.incremental_test.incremental_model_file
+[0m15:20:07.127438 [debug] [Thread-1 (]: Writing injected SQL for node "model.incremental_test.incremental_model_file"
+[0m15:20:07.135440 [debug] [Thread-1 (]: Timing info for model.incremental_test.incremental_model_file (compile): 15:20:07.118887 => 15:20:07.127438
+[0m15:20:07.135440 [debug] [Thread-1 (]: Began executing node model.incremental_test.incremental_model_file
+[0m15:20:07.193542 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.195180 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      USE [TestDB];
+      select
+          sch.name as schema_name,
+          obj.name as view_name
+      from sys.sql_expression_dependencies refs
+      inner join sys.objects obj
+      on refs.referencing_id = obj.object_id
+      inner join sys.schemas sch
+      on obj.schema_id = sch.schema_id
+      where refs.referenced_database_name = 'TestDB'
+      and refs.referenced_schema_name = 'dbo'
+      and refs.referenced_entity_name = 'incremental_model_file__dbt_tmp_temp_view'
+      and refs.referencing_class = 1
+      and obj.type = 'V'
+      
+[0m15:20:07.199146 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m15:20:07.201696 [debug] [Thread-1 (]: SQLServer adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost,1433;Database=TestDB;UID={sa};PWD=***;encrypt=No;TrustServerCertificate=Yes;Application Name=dbt-sqlserver/1.7.4
+[0m15:20:07.226569 [debug] [Thread-1 (]: SQLServer adapter: Connected to db: TestDB
+[0m15:20:07.242495 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.246992 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.248199 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+    
+      
+      
+    
+    USE [TestDB];
+    EXEC('DROP view IF EXISTS "dbo"."incremental_model_file__dbt_tmp_temp_view";');
+
+  
+[0m15:20:07.252851 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.259838 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.261433 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      USE [TestDB];
+      select
+          sch.name as schema_name,
+          obj.name as view_name
+      from sys.sql_expression_dependencies refs
+      inner join sys.objects obj
+      on refs.referencing_id = obj.object_id
+      inner join sys.schemas sch
+      on obj.schema_id = sch.schema_id
+      where refs.referenced_database_name = 'TestDB'
+      and refs.referenced_schema_name = 'dbo'
+      and refs.referenced_entity_name = 'incremental_model_file__dbt_tmp_temp_view'
+      and refs.referencing_class = 1
+      and obj.type = 'V'
+      
+[0m15:20:07.266336 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.269148 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.270184 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+    
+  
+    
+
+   
+
+    USE [TestDB];
+    
+    
+
+    EXEC('create view "dbo"."incremental_model_file__dbt_tmp_temp_view" as 
+
+select
+    *
+
+from dbo.tst
+
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records whose timestamp occurred since the last run of this model)
+  where DT >= (select max(DT) from "TestDB"."dbo"."incremental_model_file")
+
+;');
+
+
+
+    
+      EXEC('SELECT * INTO [TestDB].[dbo].[incremental_model_file__dbt_tmp] FROM [TestDB].[dbo].[incremental_model_file__dbt_tmp_temp_view];');
+    
+
+    
+      
+      
+    
+    USE [TestDB];
+    EXEC('DROP view IF EXISTS "dbo"."incremental_model_file__dbt_tmp_temp_view";');
+
+
+
+  
+  
+[0m15:20:07.309403 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.317711 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.319788 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+
+    with mapping as (
+        select
+            row_number() over (partition by object_name(c.object_id) order by c.column_id) as ordinal_position,
+            c.name collate database_default as column_name,
+            t.name as data_type,
+            c.max_length as character_maximum_length,
+            c.precision as numeric_precision,
+            c.scale as numeric_scale
+        from [TestDB].sys.columns c 
+        inner join sys.types t 
+        on c.user_type_id = t.user_type_id
+        where c.object_id = object_id('"TestDB"."dbo"."incremental_model_file__dbt_tmp"')
+    )
+
+    select
+        column_name,
+        data_type,
+        character_maximum_length,
+        numeric_precision,
+        numeric_scale
+    from mapping
+    order by ordinal_position
+
+  
+[0m15:20:07.333310 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.340106 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.342185 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+
+    with mapping as (
+        select
+            row_number() over (partition by object_name(c.object_id) order by c.column_id) as ordinal_position,
+            c.name collate database_default as column_name,
+            t.name as data_type,
+            c.max_length as character_maximum_length,
+            c.precision as numeric_precision,
+            c.scale as numeric_scale
+        from [TestDB].sys.columns c 
+        inner join sys.types t 
+        on c.user_type_id = t.user_type_id
+        where c.object_id = object_id('"TestDB"."dbo"."incremental_model_file"')
+    )
+
+    select
+        column_name,
+        data_type,
+        character_maximum_length,
+        numeric_precision,
+        numeric_scale
+    from mapping
+    order by ordinal_position
+
+  
+[0m15:20:07.356638 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.362144 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.362144 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+
+    with mapping as (
+        select
+            row_number() over (partition by object_name(c.object_id) order by c.column_id) as ordinal_position,
+            c.name collate database_default as column_name,
+            t.name as data_type,
+            c.max_length as character_maximum_length,
+            c.precision as numeric_precision,
+            c.scale as numeric_scale
+        from [TestDB].sys.columns c 
+        inner join sys.types t 
+        on c.user_type_id = t.user_type_id
+        where c.object_id = object_id('"TestDB"."dbo"."incremental_model_file"')
+    )
+
+    select
+        column_name,
+        data_type,
+        character_maximum_length,
+        numeric_precision,
+        numeric_scale
+    from mapping
+    order by ordinal_position
+
+  
+[0m15:20:07.379327 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.396633 [debug] [Thread-1 (]: Writing runtime sql for node "model.incremental_test.incremental_model_file"
+[0m15:20:07.396633 [debug] [Thread-1 (]: Using sqlserver connection "model.incremental_test.incremental_model_file"
+[0m15:20:07.396633 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "incremental_test", "target_name": "dev", "node_id": "model.incremental_test.incremental_model_file"} */
+
+      insert into "TestDB"."dbo"."incremental_model_file" ("ID", "DT")
+    (
+        select "ID", "DT"
+        from "TestDB"."dbo"."incremental_model_file__dbt_tmp"
+    )
+
+
+  
+[0m15:20:07.423083 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m15:20:07.434375 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: COMMIT
+[0m15:20:07.443392 [debug] [Thread-1 (]: Timing info for model.incremental_test.incremental_model_file (execute): 15:20:07.138536 => 15:20:07.443392
+[0m15:20:07.451396 [debug] [Thread-1 (]: On model.incremental_test.incremental_model_file: Close
+[0m15:20:07.455476 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'e847abcf-1850-4a1f-bafb-ecbf85445a84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B38087550>]}
+[0m15:20:07.460624 [info ] [Thread-1 (]: 1 of 1 OK created sql incremental model dbo.incremental_model_file ............. [[32mOK[0m in 0.34s]
+[0m15:20:07.460624 [debug] [Thread-1 (]: Finished running node model.incremental_test.incremental_model_file
+[0m15:20:07.468628 [debug] [MainThread]: On master: COMMIT
+[0m15:20:07.468628 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:20:07.468628 [debug] [MainThread]: Connection 'list_TestDB' was properly closed.
+[0m15:20:07.468628 [debug] [MainThread]: Connection 'list_TestDB_dbo' was properly closed.
+[0m15:20:07.476625 [debug] [MainThread]: Connection 'model.incremental_test.incremental_model_file' was properly closed.
+[0m15:20:07.477517 [info ] [MainThread]: 
+[0m15:20:07.477517 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 0.49 seconds (0.49s).
+[0m15:20:07.477517 [debug] [MainThread]: Command end result
+[0m15:20:07.486200 [info ] [MainThread]: 
+[0m15:20:07.491243 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:20:07.491243 [info ] [MainThread]: 
+[0m15:20:07.491243 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m15:20:07.491243 [debug] [MainThread]: Command `dbt run` succeeded at 15:20:07.491243 after 1.03 seconds
+[0m15:20:07.491243 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B353BA1D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B3100B4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022B31008190>]}
+[0m15:20:07.496432 [debug] [MainThread]: Flushing usage events
