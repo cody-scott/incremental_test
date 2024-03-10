@@ -1,0 +1,7 @@
+USE TestDB;
+GO
+
+INSERT INTO dbo.tst (ID, DT)
+VALUES
+(9, GETDATE());
+GO
