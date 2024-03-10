@@ -1,1 +1,2 @@
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong_Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest && sqlcmd -S localhost,1433 -U sa -P yourStrong_Password -i create_data.sql
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong_Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+sqlcmd -S localhost,1433 -U sa -P yourStrong_Password -i create_data.sql
